@@ -2,7 +2,7 @@
 
 Proyecto didáctico para aprender a probar una API REST con una colección de Postman ejecutada desde Newman. La API se construye con Go y se despliega como servicio web público en Render.
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/junmaes21/api-testing-newman-go)
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://dashboard.render.com/blueprint/new?repo=https%3A%2F%2Fgithub.com%2FJunmaes21%2Fapi-testing-newman-go)
 
 ## Qué incluye
 
@@ -56,9 +56,9 @@ La aplicación guarda los datos en memoria para mantener el ejemplo pequeño. Al
 
 ## Despliegue público en Render
 
-1. Publica este repositorio en GitHub.
-2. Inicia sesión en Render y elige **Deploy to Render** o crea un **Blueprint** desde este repositorio público.
-3. Revisa el servicio definido en `render.yaml` y crea el despliegue.
+1. Abre el botón **Deploy to Render** de arriba para cargar el Blueprint de este repositorio.
+2. Si Render lo solicita, autoriza acceso de lectura al repositorio de GitHub y elige el workspace correcto.
+3. Revisa que el servicio use el plan gratuito y selecciona **Apply** para crear el Blueprint. Render desplegará los commits cuando las verificaciones de GitHub Actions pasen.
 4. Al finalizar el despliegue, usa la URL pública de Render, por ejemplo `https://<nombre-del-servicio>.onrender.com`.
 5. Comprueba `https://<nombre-del-servicio>.onrender.com/health` y ejecuta la colección Newman indicando esa URL:
 

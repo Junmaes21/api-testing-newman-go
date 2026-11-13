@@ -101,7 +101,7 @@ La automatización no elimina la necesidad de revisar las pruebas. Si los requis
 
 ## Publicar la API para que otras personas puedan probarla
 
-El proyecto incluye un `Dockerfile` y un archivo `render.yaml` para crear un servicio web en Render. Después de publicar el repositorio en GitHub, podemos iniciar sesión en Render, elegir **New Web Service**, conectar el repositorio y crear el servicio con la configuración del proyecto. Render construye la imagen, inicia la API y asigna una URL pública bajo `onrender.com`.
+El proyecto incluye un `Dockerfile` y un archivo `render.yaml` para crear un servicio web en Render. Después de publicar el repositorio en GitHub, abrimos el botón **Deploy to Render** del README, autorizamos el acceso de lectura al repositorio si Render lo solicita y revisamos la configuración del Blueprint. Al seleccionar **Apply**, Render crea el servicio. La configuración espera que las verificaciones de GitHub Actions pasen antes de desplegar cada commit; cuando el primer despliegue termina, la API queda disponible bajo una URL pública de `onrender.com`.
 
 Cuando el despliegue termine, hay que abrir `/health` en esa dirección y confirmar que responde. Luego podemos ejecutar la misma colección contra el servicio remoto, cambiando solamente `baseUrl`:
 
