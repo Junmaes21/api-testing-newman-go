@@ -5,8 +5,24 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/http/httptest"
+	"strings"
 	"testing"
 )
+
+func TestHomePageIntroducesInteractiveLibrary(t *testing.T) {
+	response := request(t, NewHandler(), http.MethodGet, "/", "")
+	if response.Code != http.StatusOK {
+		t.Fatalf("status = %d, want %d", response.Code, http.StatusOK)
+	}
+	if got := response.Header().Get("Content-Type"); !strings.Contains(got, "text/html") {
+		t.Fatalf("content type = %q, want text/html", got)
+	}
+	for _, text := range []string{"Biblioteca de pruebas", "Agregar libro", "Buscar título o autor", "/api/books"} {
+		if !strings.Contains(response.Body.String(), text) {
+			t.Errorf("home page does not contain %q", text)
+		}
+	}
+}
 
 func TestHealth(t *testing.T) {
 	response := request(t, NewHandler(), http.MethodGet, "/health", "")
