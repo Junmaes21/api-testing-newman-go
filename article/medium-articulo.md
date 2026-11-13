@@ -8,8 +8,8 @@ Por eso, en este artículo vamos a recorrer un ejemplo pequeño pero completo: c
 
 La idea no es cubrir cada detalle de una plataforma, sino mostrar cómo conectar las piezas para que una comprobación que hoy hacemos a mano también pueda ejecutarse mañana, después de cada cambio.
 
-> **[IMAGEN 1, colocar aquí]**
-> Diagrama sencillo: aplicación Go → colección Postman → Newman → GitHub Actions → servicio público en Render.
+> **[IMAGEN 1: subir `images/01-flujo-api.png` aquí]**
+> Diagrama del recorrido: aplicación Go → colección Postman → Newman → GitHub Actions → Render.
 
 ## ¿Por qué Newman para probar una API?
 
@@ -23,8 +23,8 @@ Nuestra API administrará libros. Tendrá un endpoint de salud y operaciones par
 
 La estructura separa el punto de entrada HTTP, la lógica de la API, la colección de pruebas y el workflow de GitHub Actions. Esta separación ayuda a encontrar cada pieza rápido, sobre todo cuando volvamos al proyecto para agregar un escenario nuevo.
 
-> **[IMAGEN 2, colocar aquí]**
-> Captura del explorador de archivos con `cmd/api`, `internal/api`, `postman` y `.github/workflows` visibles.
+> **[IMAGEN 2: subir `images/02-project-github.png` aquí]**
+> Captura real del árbol de archivos del repositorio público.
 
 La API expone `/health` para indicar que el proceso está activo y agrupa los recursos de libros bajo `/api/books`. Para mantener el ejemplo enfocado, los libros se guardan en memoria. Al reiniciar el proceso, vuelven los datos iniciales, por lo que esta implementación es apropiada para aprender y demostrar pruebas, pero no para almacenar información real.
 
@@ -74,8 +74,8 @@ newman run postman/api-testing-newman-go.postman_collection.json \
 
 La dirección base se pasa como variable para que la misma colección funcione en la computadora de desarrollo, en GitHub Actions y contra el servicio publicado. Esto evita mantener copias de la colección con URLs distintas.
 
-> **[IMAGEN 3, colocar aquí]**
-> Captura de la terminal con el resumen de Newman mostrando las ocho solicitudes ejecutadas y sin fallos.
+> **[IMAGEN 3: subir `images/03-newman-results.png` aquí]**
+> Resumen de Newman: ocho solicitudes, catorce aserciones y cero fallos, según el log de GitHub Actions.
 
 ## Hacer que GitHub Actions repita las pruebas
 
@@ -94,8 +94,8 @@ Este fragmento muestra la llamada central del workflow:
 
 En el repositorio también se configuran Go y Node.js, porque la aplicación se compila con Go y Newman se ejecuta sobre Node. Mantener estas versiones declaradas hace más predecible el entorno de CI y permite que otra persona pueda repetir el flujo siguiendo el README.
 
-> **[IMAGEN 4, colocar aquí]**
-> Captura de la ejecución de `API checks` en GitHub Actions, con los pasos verdes desde el checkout hasta Newman.
+> **[IMAGEN 4: subir `images/04-github-actions.png` aquí]**
+> Captura real del job de GitHub Actions con sus pasos completados.
 
 La automatización no elimina la necesidad de revisar las pruebas. Si los requisitos de la API cambian, los escenarios también deberían actualizarse. La ventaja es que ahora el equipo recibe una señal inmediata cuando el comportamiento que decidimos cuidar deja de cumplirse.
 
@@ -110,8 +110,8 @@ newman run postman/api-testing-newman-go.postman_collection.json \
   --env-var "baseUrl=https://api-testing-newman-go.onrender.com"
 ```
 
-> **[IMAGEN 5, colocar aquí]**
-> Captura del navegador en `https://api-testing-newman-go.onrender.com/health` con la respuesta JSON visible.
+> **[IMAGEN 5: subir `images/05-api-health.png` aquí]**
+> Respuesta HTTP verificada del endpoint público de salud.
 
 Un servicio gratuito puede suspenderse después de un periodo sin tráfico y tardar un poco más en responder a la primera solicitud posterior. Es una limitación que debemos explicar cuando compartimos el enlace, especialmente si alguien espera una respuesta instantánea. La instancia de este ejemplo está disponible en `https://api-testing-newman-go.onrender.com`.
 

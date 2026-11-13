@@ -69,12 +69,15 @@ newman run postman/api-testing-newman-go.postman_collection.json \
 
 Render puede suspender servicios del plan gratuito cuando no reciben tráfico; la primera solicitud posterior puede tardar mientras vuelve a iniciar. El servicio es demostrativo y no debe usarse para guardar datos reales.
 
-## Capturas sugeridas para el artículo
+## Imágenes preparadas para el artículo
 
-1. **Después de explicar la estructura del proyecto:** inserta una captura del árbol de carpetas mostrando `cmd`, `internal`, `postman` y `.github/workflows`.
-2. **Después de presentar Newman:** inserta una captura del resultado de la colección con las ocho solicitudes aprobadas.
-3. **Después de explicar CI:** inserta una captura del job `API checks` completado en GitHub Actions.
-4. **En la sección de despliegue:** inserta una captura de la página `/health` abierta desde el dominio de Render.
+1. [Diagrama del flujo de pruebas](article/images/01-flujo-api.png)
+2. [Árbol del repositorio público](article/images/02-project-github.png)
+3. [Resumen de Newman, 8 solicitudes y 14 aserciones](article/images/03-newman-results.png)
+4. [Ejecución aprobada en GitHub Actions](article/images/04-github-actions.png)
+5. [Respuesta del endpoint público `/health`](article/images/05-api-health.png)
+
+El artículo indica el punto exacto para subir cada archivo a Medium.
 
 ## Licencia
 

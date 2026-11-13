@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Flujo de pruebas de API</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f3f6fb;color:#162033;font:20px/1.45 Inter,"Segoe UI",Arial,sans-serif}
+main{width:1600px;height:900px;padding:76px 86px;background:radial-gradient(circle at 90% 10%,#e0f2fe 0,transparent 28%),#f7f9fc}
+.eyebrow{color:#137c8b;font-size:17px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+h1{font-size:52px;line-height:1.08;margin:16px 0 14px;letter-spacing:-1.6px}.sub{color:#607087;font-size:23px;margin:0 0 70px}
+.flow{display:flex;align-items:center;gap:17px}.card{height:265px;flex:1;position:relative;background:#fff;border:1px solid #dbe4ee;border-radius:22px;padding:28px 25px 68px;box-shadow:0 14px 34px #1d355710}
+.number{display:grid;place-items:center;width:42px;height:42px;border-radius:13px;background:#e5f5f4;color:#087e79;font-weight:800;margin-bottom:19px}
+.card h2{font-size:25px;margin:0 0 8px}.card p{font-size:16px;line-height:1.35;color:#637187;margin:0}.tag{position:absolute;left:25px;bottom:18px;display:inline-block;padding:7px 11px;background:#eff6ff;color:#31558c;border-radius:999px;font-size:14px;font-weight:700}
+.arrow{font-size:34px;color:#1d91a0;font-weight:700}.foot{margin-top:48px;padding:19px 24px;border-left:5px solid #19a69c;background:#e9f7f5;border-radius:9px;color:#3c5564;font-size:18px}
+</style>
+</head>
+<body><main>
+<div class="eyebrow">Pruebas de API · del código a producción</div>
+<h1>Una misma colección, de API a producción</h1>
+<p class="sub">Los escenarios se guardan con el proyecto y se repiten después de cada cambio.</p>
+<section class="flow">
+<article class="card"><div class="number">01</div><h2>API en Go</h2><p>Rutas REST de libros con respuestas JSON.</p><span class="tag">net/http</span></article>
+<div class="arrow">›</div>
+<article class="card"><div class="number">02</div><h2>Colección Postman</h2><p>Solicitudes y resultados que queremos comprobar.</p><span class="tag">8 solicitudes</span></article>
+<div class="arrow">›</div>
+<article class="card"><div class="number">03</div><h2>Newman</h2><p>Ejecuta los escenarios con la URL elegida.</p><span class="tag">14 aserciones</span></article>
+<div class="arrow">›</div>
+<article class="card"><div class="number">04</div><h2>GitHub Actions</h2><p>Comprueba cada cambio en integración continua.</p><span class="tag">CI automático</span></article>
+<div class="arrow">›</div>
+<article class="card"><div class="number">05</div><h2>Render</h2><p>Publica la API cuando pasan las verificaciones.</p><span class="tag">URL pública</span></article>
+</section>
+<div class="foot">El objetivo es detectar cambios inesperados antes de que lleguen a quienes consumen la API.</div>
+</main></body></html>
