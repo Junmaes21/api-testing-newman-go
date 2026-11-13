@@ -26,7 +26,13 @@ La estructura separa el punto de entrada HTTP, la lógica de la API, la colecci�
 > **[IMAGEN 2: subir `images/02-project-github.png` aquí]**
 > Captura real del árbol de archivos del repositorio público.
 
-La API expone `/health` para indicar que el proceso está activo y agrupa los recursos de libros bajo `/api/books`. Para mantener el ejemplo enfocado, los libros se guardan en memoria. Al reiniciar el proceso, vuelven los datos iniciales, por lo que esta implementación es apropiada para aprender y demostrar pruebas, pero no para almacenar información real.
+La API expone `/health` para indicar que el proceso está activo y agrupa los recursos de libros bajo `/api/books`. Para mantener el ejemplo enfocado, los libros se guardan en memoria. Mientras el servicio está activo, todos los navegadores consultan la misma lista; al reiniciar el proceso, vuelven los datos iniciales. Por eso esta implementación es apropiada para aprender y demostrar pruebas, pero no para almacenar información real.
+
+### Una primera visita desde el navegador
+
+Al abrir la dirección principal, el visitante llega a una página en español con el catálogo visible. Desde allí puede buscar por título o autor, agregar un libro, editarlo o eliminarlo. Cada acción envía una solicitud a la API y refresca la lista para mostrar el resultado.
+
+Así, quien recién conoce el proyecto puede explorar sus funciones sin empezar por una respuesta JSON o una herramienta de línea de comandos. Postman y Newman siguen siendo útiles para repetir los mismos escenarios de forma controlada y automatizada.
 
 Podemos levantar el servidor desde la raíz del repositorio con Go:
 
@@ -113,11 +119,16 @@ newman run postman/api-testing-newman-go.postman_collection.json \
 > **[IMAGEN 5: subir `images/05-api-health.png` aquí]**
 > Respuesta HTTP verificada del endpoint público de salud.
 
+Además del endpoint de salud, la dirección principal abre la biblioteca interactiva. Así, alguien que recibe el enlace puede entender qué hace el sistema y probarlo antes de abrir Postman.
+
+> **[IMAGEN 6: subir `images/06-biblioteca-interactiva.png` aquí]**
+> Captura de la biblioteca con su indicador de conexión, búsqueda y acciones para cada libro.
+
 Un servicio gratuito puede suspenderse después de un periodo sin tráfico y tardar un poco más en responder a la primera solicitud posterior. Es una limitación que debemos explicar cuando compartimos el enlace, especialmente si alguien espera una respuesta instantánea. La instancia de este ejemplo está disponible en `https://api-testing-newman-go.onrender.com`.
 
 ## Qué conseguimos con este recorrido
 
-Con un ejemplo acotado conectamos cuatro prácticas: una API que podemos iniciar localmente, escenarios funcionales guardados con el proyecto, una ejecución automatizada que informa si algo se rompe y un servicio accesible desde Internet. Además, los mismos escenarios sirven en los tres contextos, porque cambiamos la URL base en lugar de duplicar las pruebas.
+Con un ejemplo acotado conectamos varias prácticas: una interfaz sencilla para explorar libros, una API que podemos iniciar localmente, escenarios funcionales guardados con el proyecto, una ejecución automatizada que informa si algo se rompe y un servicio accesible desde Internet. Además, los mismos escenarios sirven en local, en GitHub Actions y contra el servicio desplegado, porque cambiamos la URL base en lugar de duplicar las pruebas.
 
 El proyecto deja espacio para crecer. Podemos añadir autenticación, persistencia con una base de datos, pruebas de carga con k6 o validaciones de contrato más estrictas. Para cada extensión, lo importante será elegir qué riesgo queremos detectar y añadir una comprobación que pueda repetirse de forma confiable.
 
