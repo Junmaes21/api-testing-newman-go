@@ -1,0 +1,53 @@
+name: API checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Go
+        uses: actions/setup-go@v7
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      - name: Format check
+        run: test -z "$(gofmt -l .)"
+
+      - name: Go tests
+        run: go test -race -cover ./...
+
+      - name: Build API
+        run: go build -o bin/api ./cmd/api
+
+      - name: Set up Node.js for Newman
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+
+      - name: Install Newman
+        run: npm install --global newman@6.2.1
+
+      - name: Start API
+        run: |
+          ./bin/api > /tmp/api.log 2>&1 &
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://127.0.0.1:8080/health; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/api.log
+          exit 1
+
+      - name: Newman API tests
+        run: newman run postman/api-testing-newman-go.postman_collection.json --env-var "baseUrl=http://127.0.0.1:8080" --reporters cli
