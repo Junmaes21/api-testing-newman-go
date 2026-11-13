@@ -59,12 +59,12 @@ La aplicación guarda los datos en memoria para mantener el ejemplo pequeño. Al
 1. Abre el botón **Deploy to Render** de arriba para cargar el Blueprint de este repositorio.
 2. Si Render lo solicita, autoriza acceso de lectura al repositorio de GitHub y elige el workspace correcto.
 3. Revisa que el servicio use el plan gratuito y selecciona **Apply** para crear el Blueprint. Render desplegará los commits cuando las verificaciones de GitHub Actions pasen.
-4. Al finalizar el despliegue, usa la URL pública de Render, por ejemplo `https://<nombre-del-servicio>.onrender.com`.
-5. Comprueba `https://<nombre-del-servicio>.onrender.com/health` y ejecuta la colección Newman indicando esa URL:
+4. La API desplegada está en [api-testing-newman-go.onrender.com](https://api-testing-newman-go.onrender.com).
+5. Comprueba el endpoint `/health` y ejecuta la colección Newman contra la URL pública:
 
 ```bash
 newman run postman/api-testing-newman-go.postman_collection.json \
-  --env-var "baseUrl=https://<nombre-del-servicio>.onrender.com"
+  --env-var "baseUrl=https://api-testing-newman-go.onrender.com"
 ```
 
 Render puede suspender servicios del plan gratuito cuando no reciben tráfico; la primera solicitud posterior puede tardar mientras vuelve a iniciar. El servicio es demostrativo y no debe usarse para guardar datos reales.

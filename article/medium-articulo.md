@@ -107,13 +107,13 @@ Cuando el despliegue termine, hay que abrir `/health` en esa dirección y confir
 
 ```bash
 newman run postman/api-testing-newman-go.postman_collection.json \
-  --env-var "baseUrl=https://<tu-servicio>.onrender.com"
+  --env-var "baseUrl=https://api-testing-newman-go.onrender.com"
 ```
 
 > **[IMAGEN 5, colocar aquí]**
-> Captura del navegador en `https://<tu-servicio>.onrender.com/health` con la respuesta JSON visible.
+> Captura del navegador en `https://api-testing-newman-go.onrender.com/health` con la respuesta JSON visible.
 
-Un servicio gratuito puede suspenderse después de un periodo sin tráfico y tardar un poco más en responder a la primera solicitud posterior. Es una limitación que debemos explicar cuando compartimos el enlace, especialmente si alguien espera una respuesta instantánea. En el artículo publicado, reemplaza `<tu-servicio>` por el dominio real que entregue Render y añade el enlace al repositorio público.
+Un servicio gratuito puede suspenderse después de un periodo sin tráfico y tardar un poco más en responder a la primera solicitud posterior. Es una limitación que debemos explicar cuando compartimos el enlace, especialmente si alguien espera una respuesta instantánea. La instancia de este ejemplo está disponible en `https://api-testing-newman-go.onrender.com`.
 
 ## Qué conseguimos con este recorrido
 
@@ -126,7 +126,7 @@ Si quieres reproducir el ejemplo, revisa primero el README, ejecuta la API, corr
 ## Recursos
 
 - Código del proyecto: [github.com/Junmaes21/api-testing-newman-go](https://github.com/Junmaes21/api-testing-newman-go)
-- API desplegada: **[añadir aquí la URL pública de Render]**
+- API desplegada: [api-testing-newman-go.onrender.com](https://api-testing-newman-go.onrender.com)
 - [Documentación oficial de Newman](https://learning.postman.com/docs/collections/using-newman-cli/newman-options)
 - [Documentación oficial de GitHub Actions](https://docs.github.com/actions)
 - [Guía oficial de Render para servicios web Go](https://render.com/docs/deploy-go-nethttp)
