@@ -125,7 +125,7 @@ Si quieres reproducir el ejemplo, revisa primero el README, ejecuta la API, corr
 
 ## Recursos
 
-- Código del proyecto: **[añadir aquí el enlace al repositorio público de GitHub]**
+- Código del proyecto: [github.com/Junmaes21/api-testing-newman-go](https://github.com/Junmaes21/api-testing-newman-go)
 - API desplegada: **[añadir aquí la URL pública de Render]**
 - [Documentación oficial de Newman](https://learning.postman.com/docs/collections/using-newman-cli/newman-options)
 - [Documentación oficial de GitHub Actions](https://docs.github.com/actions)
